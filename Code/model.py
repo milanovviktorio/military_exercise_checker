@@ -9,6 +9,8 @@ import joblib as jb
 
 df = pd.read_csv("./Files/exercise_angles.csv") 
 
+df = df[~df["Label"].isin(["Russian twists", "Jumping Jacks"])]
+
 print(df.head())
 print(df.columns)
 
@@ -22,7 +24,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 print(X.head())
 print(X.columns)
 
-# ------------ MODEL EVALUATIONS ------------
+# # ------------ MODEL EVALUATIONS ------------
 # models = {
 #     "RandomForest": RandomForestClassifier(),
 #     "SVM": SVC(),

@@ -6,7 +6,7 @@ import time
 import pandas as pd
 
 # ── Load model ────────────────────────────────────────────────────────────────
-model = joblib.load("../Files/model.pkl")
+model = joblib.load("./Files/model.pkl")
 
 try:
     feature_names = joblib.load("./Files/feature_names.pkl")
@@ -47,7 +47,7 @@ def get_landmark_xy(lm, landmark):
     return [p.x, p.y]
 
 
-def extract_angles(landmarks, side="right"):
+def extract_angles(landmarks, side="left"):
     """
     Returns a dict with keys matching your CSV feature columns exactly.
     side: 'right' or 'left'
@@ -128,7 +128,7 @@ while True:
         mp_draw.draw_landmarks(frame, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
 
         try:
-            angles = extract_angles(results.pose_landmarks, side="right")
+            angles = extract_angles(results.pose_landmarks, side="left")
             X_live = pd.DataFrame([angles])[feature_names]
 
             pred  = model.predict(X_live)[0]
