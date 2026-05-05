@@ -9,9 +9,11 @@ import joblib as jb
 
 df = pd.read_csv("./Files/exercise_angles.csv") 
 
+pd.set_option('display.max_columns', 6)
+
 df = df[~df["Label"].isin(["Russian twists", "Jumping Jacks"])]
 
-print(df.head())
+print(df.sample(n=6))
 print(df.columns)
 
 X = df.drop(["Label", "Side"], axis=1)   # angle

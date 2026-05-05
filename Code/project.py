@@ -12,7 +12,7 @@ from datetime import datetime
 IDEAL_RANGES = {
     "Push Ups": {"Elbow_Angle": (100, 180)},
     "Pull ups": {"Elbow_Angle": (60, 180)},
-    "Squats":   {"Knee_Angle": (80, 100), "Hip_Angle": (80, 100), "Ankle_Angle": (70, 90)},
+    "Squats":   {"Knee_Angle": (80, 180)},
 }
 
 REP_CONFIG = {
@@ -29,15 +29,13 @@ JOINT_LABELS = {
     "Knee_Ground_Angle": "Knee(g)", "Ankle_Ground_Angle": "Ank(g)",
 }
 
-# A rep is counted whenever the tracked joint swings MIN_SWING degrees
-# down and then MIN_SWING degrees back up. Lower = more forgiving.
 MIN_SWING = 20
 
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 
 # ── Database ──────────────────────────────────────────────────────────────────
 
-def init_db(path="workout_tracker.db"):
+def init_db(path="./Files/workout_tracker.db"):
     # isolation_level=None → autocommit: every write is flushed to disk immediately
     conn = sqlite3.connect(path, isolation_level=None)
     conn.execute("""
